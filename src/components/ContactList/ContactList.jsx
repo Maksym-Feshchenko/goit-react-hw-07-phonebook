@@ -2,7 +2,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts, getFilter } from '../../redux/selecrors';
-import { removeContact } from '../../redux/contactSlice';
+import { delContactsThunk } from '../../redux/contactsThunk';
 
 const ContactList = function () {
   const dispatch = useDispatch();
@@ -19,15 +19,15 @@ const ContactList = function () {
 
   return (
     <ul>
-      {filteredContacts.map(({ id, name, number }) => (
+      {filteredContacts.map(({ id, name, phone }) => (
         <li key={id}>
           <p>
-            {name}:{number}
+            {name}:{phone}
           </p>
           <button
             className='Button'
             data-id={id}
-            onClick={() => dispatch(removeContact(id))}
+            onClick={() => dispatch(delContactsThunk(id))}
             type="button"
           >
             Delete
